@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Finance Tracker</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+</head>
+<body>
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <header role="banner">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo"> Student Finance Tracker</h1>
+                <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+            <nav role="navigation" aria-label="Main navigation" class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="#dashboard" class="nav-link active" data-section="dashboard">Dashboard</a></li>
+                    <li><a href="#records" class="nav-link" data-section="records">Records</a></li>
+                    <li><a href="#add-transaction" class="nav-link" data-section="add-transaction">Add Transaction</a></li>
+                    <li><a href="#settings" class="nav-link" data-section="settings">Settings</a></li>
+                    <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" role="main">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active" aria-labelledby="dashboard-title">
+            <div class="container">
+                <h2 id="dashboard-title">Dashboard</h2>
+                
+                <!-- Status messages -->
+                <div id="status-message" role="status" aria-live="polite" class="status-message"></div>
+                <div id="alert-message" role="alert" aria-live="assertive" class="alert-message"></div>
+                
+                <!-- Stats cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Transactions</h3>
+                        <p class="stat-value" id="total-transactions">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Spent</h3>
+                        <p class="stat-value" id="total-amount">$0.00</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Top Category</h3>
+                        <p class="stat-value" id="top-category">None</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Last 7 Days</h3>
+                        <p class="stat-value" id="week-spending">$0.00</p>
+                    </div>
+                </div>
+
+                <!-- Budget Cap Section -->
+                <div class="budget-section">
+                    <h3>Monthly Budget</h3>
+                    <div class="budget-controls">
+                        <label for="budget-cap">Set Monthly budget:</label>
+                        <input type="number" id="budget-cap" min="0" step="0.01" placeholder="Enter budget amount">
+                        <button id="set-budget-btn" class="btn btn-primary">Set Budget</button>
+                    </div>
+                    <div class="budget-progress">
+                        <div class="progress-bar">
+                            <div id="progress-fill" class="progress-fill"></div>
+                        </div>
+                        <p id="budget-status" class="budget-status"></p>
+                    </div>
+                </div>
+
+                <!-- Simple spending chart -->
+                <div class="chart-section">
+                    <h3>Spending by Category</h3>
+                    <div id="category-chart" class="category-chart"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Records Section -->
+        <section id="records" class="section" aria-labelledby="records-title">
+            <div class="container">
+                <h2 id="records-title">Transaction Records</h2>
+                
+                <!-- Search and filter controls -->
+                <div class="controls-section">
+                    <div class="search-controls">
+                        <label for="search-input">Search with Regex:</label>
+                        <input type="text" id="search-input" placeholder="Search">
+                        <div class="search-options">
+                        <label>
+                                <input type="checkbox" id="case-insensitive" checked>
+                                Case Insensitive
+                            </label>
+                        </div>
+                        <div id="search-error" class="error-message" role="alert"></div>
+                    </div>
+                    
+                    <div class="sort-controls">
+                        <label for="sort-select">Sort by:</label>
+                        <select id="sort-select">
+                            <option value="date-desc">Date (Newest First)</option>
+                            <option value="date-asc">Date (Oldest First)</option>
+                            <option value="description-asc">Description (A-Z)</option>
+                            <option value="description-desc">Description (Z-A)</option>
+                            <option value="amount-desc">Amount (High-Low)</option>
+                            <option value="amount-asc">Amount (Low-High)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Records table/cards -->
+                <div class="records-container">
+                    <div class="table-container">
+                        <table id="records-table" class="records-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Description</th>
+                                    <th>Category</th>
+                                    <th>Amount</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="records-tbody">
+                                <!-- Records will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div id="records-cards" class="records-cards">
+                        <!-- Mobile card view will be inserted here -->
+                    </div>
+                    
+                    <div id="no-records" class="empty-state" style="display: none;">
+                        <p>No transactions found. Add your first transaction to get started!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Add/Edit Transaction Section -->
+        <section id="add-transaction" class="section" aria-labelledby="add-title">
+            <div class="container">
+                <h2 id="add-title">Add Transaction</h2>
+                
+                <form id="transaction-form" class="transaction-form" novalidate>
+                    <div class="form-group">
+                        <label for="description">Description *</label>
+                        <input type="text" id="description" name="description" required aria-describedby="description-error">
+                        <div id="description-error" class="error-message" role="alert"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="amount">Amount *</label>
+                        <div class="amount-input">
+                            <span class="currency-symbol" id="currency-symbol">$</span>
+                            <input type="text" id="amount" name="amount" required aria-describedby="amount-error" placeholder="0.00">
+                        </div>
+                        <div id="amount-error" class="error-message" role="alert"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="category">Category *</label>
+                        <select id="category" name="category" required aria-describedby="category-error">
+                            <option value="">Select category</option>
+                            <option value="Food">Food</option>
+                            <option value="Books">Books</option>
+                            <option value="Transport">Transport</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Fees">Fees</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <div id="category-error" class="error-message" role="alert"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="date">Date *</label>
+                        <input type="date" id="date" name="date" required aria-describedby="date-error">
+                        <div id="date-error" class="error-message" role="alert"></div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Add Transaction</button>
+                        <button type="button" id="cancel-edit" class="btn btn-secondary" style="display: none;">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section id="settings" class="section" aria-labelledby="settings-title">
+            <div class="container">
+                <h2 id="settings-title">Settings</h2>
+                
+                <!-- Theme Settings -->
+                <div class="settings-group">
+                    <h3>Theme Settings</h3>
+                    <div class="form-group">
+                        <label for="theme-toggle">Color Theme:</label>
+                        <div class="theme-toggle-container">
+                            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle between light and dark theme">
+                                <span class="theme-icon"></span>
+                                <span class="theme-text">Dark Mode</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Currency Settings -->
+                <div class="settings-group">
+                    <h3>Currency Settings</h3>
+                    <div class="form-group">
+                        <label for="base-currency">Base Currency:</label>
+                        <select id="base-currency">
+                            <option value="USD">USD ($)</option>
+                            <option value="EUR">EUR (€)</option>
+                            <option value="GBP">GBP (£)</option>
+                            <option value="CAD">CAD (C$)</option>
+                            <option value="RWF">RF (FR)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="currency-rates">
+                        <h4>Exchange Rates (to Base Currency)</h4>
+                        <div class="form-group">
+                            <label for="eur-rate">EUR Rate:</label>
+                            <input type="number" id="eur-rate" step="0.001" value="1.100" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="gbp-rate">GBP Rate:</label>
+                            <input type="number" id="gbp-rate" step="0.001" value="1.250" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="cad-rate">CAD Rate:</label>
+                            <input type="number" id="cad-rate" step="0.001" value="0.750" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="rwf-rate">RF Rate:</label>
+                            <input type="number" id="rwf-rate" step="0.001" value="0.001" min="0">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Category Management -->
+                <div class="settings-group">
+                    <h3>Category Management</h3>
+                    <div class="category-list" id="category-list">
+                        <!-- Categories will be loaded here -->
+                    </div>
+                    <div class="form-group">
+                        <label for="new-category">Add New Category:</label>
+                        <input type="text" id="new-category" placeholder="Enter category name">
+                        <button id="add-category-btn" class="btn btn-secondary">Add Category</button>
+                    </div>
+                </div>
+                
+                <!-- Data Management -->
+                <div class="settings-group">
+                    <h3>Data Management</h3>
+                    <div class="data-controls">
+                        <button id="export-btn" class="btn btn-primary">Export Data (JSON)</button>
+                        <div class="import-section">
+                            <label for="import-file">Import Data:</label>
+                            <input type="file" id="import-file" accept=".json">
+                            <button id="import-btn" class="btn btn-secondary">Import</button>
+                        </div>
+                        <button id="clear-data-btn" class="btn btn-danger">Clear All Data</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section" aria-labelledby="about-title">
+            <div class="container">
+                <h2 id="about-title">About Our Finance Tracker</h2>
+                
+                <div class="about-content">
+                    <!-- Hero Section -->
+                    <div class="about-hero">
+                        <div class="hero-text">
+                            <h3> Empowering Student Financial Success</h3>
+                            <p class="hero-description">Take control of your financial journey with our comprehensive, student-focused finance tracker. Built by students, for students.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Mission and Vision Cards -->
+                    <div class="about-cards">
+                        <div class="about-card">
+                            <div class="card-icon"></div>
+                            <h4>Our Mission</h4>
+                            <p>To provide students with powerful, intuitive tools for managing their finances, helping them build healthy money habits that last a lifetime.</p>
+                        </div>
+                        
+                        <div class="about-card">
+                            <div class="card-icon"></div>
+                            <h4>What We Offer</h4>
+                            <p>Comprehensive expense tracking, budget management, and financial insights - all designed specifically for the unique challenges students face.</p>
+                        </div>
+                        
+                        <div class="about-card">
+                            <div class="card-icon"></div>
+                            <h4>Privacy First</h4>
+                            <p>Your financial data stays completely private on your device. No servers, no data collection, no compromises on security.</p>
+                        </div>
+                    </div>
+                    
+                    
+                    <!-- Call to Action -->
+                    <div class="cta-section">
+                        <h3> Start Your Financial Journey Today</h3>
+                        <p>Join thousands of students who have taken control of their finances. Build healthy money habits, track your progress, and achieve your financial goals.</p>
+                        <div class="cta-buttons">
+                            <button onclick="document.querySelector('[data-section=&quot;add-transaction&quot;]').click()" class="btn btn-primary">Add Your First Transaction</button>
+                            <button onclick="document.querySelector('[data-section=&quot;dashboard&quot;]').click()" class="btn btn-secondary">View Dashboard</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Section -->
+                    <div class="contact-section">
+                        <div class="contact-grid">
+                            <div class="contact-card">
+                                <h4> Get in Touch</h4>
+                                <div class="contact-details">
+                                    <p><strong>Email:</strong> p.kami@alustudent.com</p>
+                                    <p><strong>Phone:</strong> +250788888888</p>
+                                    <p><strong>Github:</strong>KamiPacifique</p>
+                                    <p><strong>Hours:</strong> Mon-Fri, 9AM-5PM </p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-card">
+                                <h4> Visit Us</h4>
+                                <div class="contact-details">
+                                    <p><strong>Address:</strong><br>Kigali<br>Masoro</p>
+                                    <p><strong>Support:</strong> 24/7 Online Help</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="container">
+            <p>&copy; 2025 Student Finance Tracker.</p>
+        </div>
+    </footer>
+
+    <!-- Edit Modal -->
+    <div id="edit-modal" class="modal" role="dialog" aria-labelledby="edit-modal-title" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="edit-modal-title">Edit Transaction</h3>
+                <button class="modal-close" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-form" novalidate>
+                    <!-- Form fields will be populated dynamically -->
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="delete-modal" class="modal" role="dialog" aria-labelledby="delete-modal-title" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="delete-modal-title">Confirm Delete</h3>
+                <button class="modal-close" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this transaction?</p>
+                <div class="modal-actions">
+                    <button id="confirm-delete" class="btn btn-danger">Delete</button>
+                    <button id="cancel-delete" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="scripts/main.js"></script>
+</body>
+</html>
+

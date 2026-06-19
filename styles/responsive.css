@@ -1,0 +1,519 @@
+/* Mobile-First Responsive Design */
+
+/* Small mobile devices (up to 360px) */
+@media (max-width: 360px) {
+    .container {
+        padding: 0 var(--spacing-sm);
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .nav-list {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+    }
+    
+    .nav-link {
+        text-align: center;
+        padding: var(--spacing-md);
+    }
+    
+    .controls-section {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .budget-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .btn {
+        justify-content: center;
+    }
+    
+    .data-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .import-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+/* Mobile devices (361px to 767px) */
+@media (min-width: 361px) and (max-width: 767px) {
+    /* Hide table, show cards on mobile */
+    .table-container {
+        display: none;
+    }
+    
+    .records-cards {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .controls-section {
+        flex-direction: column;
+    }
+    
+    .search-controls,
+    .sort-controls {
+        min-width: auto;
+    }
+    
+    .budget-controls {
+        flex-wrap: wrap;
+    }
+    
+    .budget-controls input {
+        flex: 1;
+        min-width: 200px;
+    }
+    
+    .chart-section {
+        overflow-x: auto;
+    }
+    
+    .chart-bar {
+        min-width: 250px;
+    }
+    
+    /* Modal adjustments */
+    .modal {
+        padding: var(--spacing-sm);
+    }
+    
+    .modal-content {
+        max-width: none;
+        width: 100%;
+    }
+    
+    .modal-actions {
+        flex-direction: column;
+    }
+}
+
+/* Tablet devices (768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    header .container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .nav-list {
+        margin: 0;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .controls-section {
+        flex-direction: row;
+        align-items: end;
+    }
+    
+    /* Show table on tablet and up */
+    .table-container {
+        display: block;
+    }
+    
+    .records-cards {
+        display: none;
+    }
+    
+    .budget-controls {
+        align-items: end;
+    }
+    
+    .budget-controls input {
+        max-width: 200px;
+    }
+    
+    .form-actions {
+        justify-content: flex-start;
+    }
+    
+    .data-controls {
+        justify-content: flex-start;
+        align-items: center;
+    }
+    
+    .import-section {
+        align-items: end;
+    }
+    
+    /* Chart improvements */
+    .category-chart {
+        max-width: none;
+    }
+}
+
+/* Desktop devices (1024px and up) */
+@media (min-width: 1024px) {
+    .container {
+        padding: 0 var(--spacing-lg);
+    }
+    
+    header .container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .controls-section {
+        align-items: end;
+    }
+    
+    .search-controls,
+    .sort-controls {
+        flex: none;
+        width: auto;
+    }
+    
+    .search-controls {
+        min-width: 300px;
+    }
+    
+    .sort-controls {
+        min-width: 200px;
+    }
+    
+    /* Better table layout */
+    .records-table th:nth-child(1),
+    .records-table td:nth-child(1) { width: 15%; }
+    .records-table th:nth-child(2),
+    .records-table td:nth-child(2) { width: 35%; }
+    .records-table th:nth-child(3),
+    .records-table td:nth-child(3) { width: 20%; }
+    .records-table th:nth-child(4),
+    .records-table td:nth-child(4) { width: 15%; }
+    .records-table th:nth-child(5),
+    .records-table td:nth-child(5) { width: 15%; }
+    
+    /* Form layout improvements */
+    .transaction-form {
+        max-width: 600px;
+    }
+    
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .budget-controls {
+        align-items: end;
+        gap: var(--spacing-lg);
+    }
+    
+    .budget-controls label {
+        white-space: nowrap;
+    }
+    
+    .budget-controls input {
+        max-width: 200px;
+    }
+    
+    /* Settings layout */
+    .currency-rates .form-group {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: var(--spacing-md);
+    }
+    
+    .currency-rates label {
+        min-width: 100px;
+        margin-bottom: 0;
+    }
+    
+    .currency-rates input {
+        max-width: 150px;
+    }
+    
+    .data-controls {
+        gap: var(--spacing-lg);
+    }
+    
+    /* Modal sizing */
+    .modal-content {
+        max-width: 600px;
+    }
+    
+    /* Chart improvements */
+    .chart-bar {
+        min-height: 32px;
+    }
+    
+    .chart-bar-fill {
+        height: 32px;
+    }
+    
+    .chart-label {
+        min-width: 120px;
+    }
+    
+    .chart-value {
+        min-width: 100px;
+    }
+}
+
+/* Large desktop (1200px and up) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1400px;
+    }
+    
+    /* Enhanced grid layouts */
+    .stats-grid {
+        gap: var(--spacing-xl);
+    }
+    
+    .stat-card {
+        padding: var(--spacing-xl);
+    }
+    
+    /* Better spacing */
+    main {
+        padding: var(--spacing-2xl) 0;
+    }
+    
+    .section {
+        margin-bottom: var(--spacing-2xl);
+    }
+    
+    /* Enhanced form layouts */
+    .transaction-form {
+        max-width: 800px;
+    }
+    
+    .controls-section {
+        gap: var(--spacing-xl);
+    }
+    
+    /* Settings improvements */
+    .settings-group {
+        padding: var(--spacing-xl);
+    }
+    
+    .currency-rates {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--spacing-lg);
+        margin-top: var(--spacing-lg);
+    }
+    
+    .currency-rates .form-group {
+        margin-bottom: var(--spacing-md);
+    }
+}
+
+/* Ultra-wide screens (1400px and up) */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1600px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    
+    /* Enhanced chart layout */
+    .chart-section {
+        padding: var(--spacing-xl);
+    }
+    
+    .category-chart {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+}
+
+/* Print Styles */
+@media print {
+    * {
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+    
+    body {
+        font-size: 12pt;
+        line-height: 1.5;
+    }
+    
+    .skip-link,
+    .nav-list,
+    .form-actions,
+    .action-btn,
+    .btn,
+    .modal,
+    footer {
+        display: none !important;
+    }
+    
+    .section {
+        display: block !important;
+        page-break-before: always;
+    }
+    
+    .section:first-of-type {
+        page-break-before: auto;
+    }
+    
+    .stat-card,
+    .settings-group,
+    .records-table {
+        break-inside: avoid;
+    }
+    
+    .records-table {
+        font-size: 10pt;
+    }
+    
+    .records-table th,
+    .records-table td {
+        padding: 4pt 8pt;
+    }
+    
+    h1, h2, h3 {
+        page-break-after: avoid;
+    }
+    
+    .container {
+        max-width: none;
+        padding: 0;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --border-color: #000000;
+        --text-primary: #000000;
+        --text-secondary: #000000;
+        --background-color: #ffffff;
+        --surface-color: #ffffff;
+    }
+    
+    .btn {
+        border: 2px solid currentColor;
+    }
+    
+    .nav-link:hover,
+    .nav-link:focus,
+    .nav-link.active {
+        outline: 3px solid currentColor;
+        outline-offset: 2px;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .stat-card:hover {
+        transform: none;
+    }
+    
+    .btn:hover:not(:disabled) {
+        transform: none;
+    }
+}
+
+/* Dark theme improvements */
+[data-theme="dark"] .records-table tbody tr:hover {
+    background: #334155;
+}
+
+[data-theme="dark"] .modal {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+[data-theme="dark"] .modal-content {
+    background: var(--surface-color);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] mark {
+    background: #fbbf24;
+    color: #92400e;
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea {
+    background: var(--surface-color);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] select:focus,
+[data-theme="dark"] textarea:focus {
+    background: var(--background-color);
+}
+
+/* Dark theme record cards */
+[data-theme="dark"] .record-card {
+    background: var(--surface-color);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .record-card-description {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .record-card-amount {
+    color: var(--primary-color);
+}
+
+[data-theme="dark"] .record-card-meta {
+    color: var(--text-secondary);
+}
+
+/* Dark theme empty state */
+[data-theme="dark"] .empty-state {
+    color: var(--text-muted);
+}
+
+/* Auto dark mode support (respects system preference when theme not manually set) */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        --primary-color: #3b82f6;
+        --primary-hover: #2563eb;
+        --background-color: #0f172a;
+        --surface-color: #1e293b;
+        --border-color: #334155;
+        --text-primary: #f1f5f9;
+        --text-secondary: #cbd5e1;
+        --text-muted: #64748b;
+    }
+}
+

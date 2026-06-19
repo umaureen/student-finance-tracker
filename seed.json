@@ -1,0 +1,159 @@
+{
+  "transactions": [
+    {
+      "id": "txn_001",
+      "description": "Lunch at university cafeteria",
+      "amount": 12.50,
+      "category": "Food", 
+      "date": "2024-10-10",
+      "createdAt": "2024-10-10T12:30:00.000Z",
+      "updatedAt": "2024-10-10T12:30:00.000Z"
+    },
+    {
+      "id": "txn_002",
+      "description": "Chemistry textbook and lab manual",
+      "amount": 189.99,
+      "category": "Books",
+      "date": "2024-10-08",
+      "createdAt": "2024-10-08T15:45:00.000Z", 
+      "updatedAt": "2024-10-08T15:45:00.000Z"
+    },
+    {
+      "id": "txn_003",
+      "description": "Monthly bus pass for campus transport",
+      "amount": 45.00,
+      "category": "Transport",
+      "date": "2024-10-01",
+      "createdAt": "2024-10-01T09:15:00.000Z",
+      "updatedAt": "2024-10-01T09:15:00.000Z"
+    },
+    {
+      "id": "txn_004", 
+      "description": "Coffee with study group",
+      "amount": 8.75,
+      "category": "Entertainment",
+      "date": "2024-10-09",
+      "createdAt": "2024-10-09T14:20:00.000Z",
+      "updatedAt": "2024-10-09T14:20:00.000Z"
+    },
+    {
+      "id": "txn_005",
+      "description": "University registration fee payment",
+      "amount": 250.00,
+      "category": "Fees",
+      "date": "2024-09-28",
+      "createdAt": "2024-09-28T11:00:00.000Z",
+      "updatedAt": "2024-09-28T11:00:00.000Z"
+    },
+    {
+      "id": "txn_006",
+      "description": "Grocery shopping at supermarket", 
+      "amount": 67.84,
+      "category": "Food",
+      "date": "2024-10-05",
+      "createdAt": "2024-10-05T18:30:00.000Z",
+      "updatedAt": "2024-10-05T18:30:00.000Z"
+    },
+    {
+      "id": "txn_007",
+      "description": "Movie tickets for weekend entertainment",
+      "amount": 15.50,
+      "category": "Entertainment", 
+      "date": "2024-10-06",
+      "createdAt": "2024-10-06T20:00:00.000Z",
+      "updatedAt": "2024-10-06T20:00:00.000Z"
+    },
+    {
+      "id": "txn_008",
+      "description": "Used laptop purchase for programming course",
+      "amount": 450.00,
+      "category": "Other",
+      "date": "2024-09-25",
+      "createdAt": "2024-09-25T13:45:00.000Z", 
+      "updatedAt": "2024-09-25T13:45:00.000Z"
+    },
+    {
+      "id": "txn_009",
+      "description": "Laboratory safety goggles and supplies",
+      "amount": 23.99,
+      "category": "Books",
+      "date": "2024-10-03", 
+      "createdAt": "2024-10-03T16:15:00.000Z",
+      "updatedAt": "2024-10-03T16:15:00.000Z"
+    },
+    {
+      "id": "txn_010",
+      "description": "Late night uber ride from library",
+      "amount": 12.30,
+      "category": "Transport",
+      "date": "2024-10-07",
+      "createdAt": "2024-10-07T23:45:00.000Z",
+      "updatedAt": "2024-10-07T23:45:00.000Z"
+    },
+    {
+      "id": "txn_011", 
+      "description": "Pizza delivery during exam week",
+      "amount": 18.95,
+      "category": "Food",
+      "date": "2024-10-04",
+      "createdAt": "2024-10-04T21:30:00.000Z",
+      "updatedAt": "2024-10-04T21:30:00.000Z"
+    },
+    {
+      "id": "txn_012",
+      "description": "Annual student gym membership fee",
+      "amount": 120.00,
+      "category": "Fees", 
+      "date": "2024-09-30",
+      "createdAt": "2024-09-30T10:30:00.000Z",
+      "updatedAt": "2024-09-30T10:30:00.000Z"
+    },
+    {
+      "id": "txn_013", 
+      "description": "Stationery and notebook supplies purchase",
+      "amount": 34.67,
+      "category": "Books",
+      "date": "2024-10-02",
+      "createdAt": "2024-10-02T14:15:00.000Z",
+      "updatedAt": "2024-10-02T14:15:00.000Z"
+    },
+    {
+      "id": "txn_014",
+      "description": "Weekend concert ticket with friends",
+      "amount": 42.00,
+      "category": "Entertainment",
+      "date": "2024-09-29",
+      "createdAt": "2024-09-29T19:00:00.000Z",
+      "updatedAt": "2024-09-29T19:00:00.000Z"
+    },
+    {
+      "id": "txn_015",
+      "description": "Emergency phone repair service fee",
+      "amount": 85.00,
+      "category": "Other",
+      "date": "2024-10-01",
+      "createdAt": "2024-10-01T16:45:00.000Z", 
+      "updatedAt": "2024-10-01T16:45:00.000Z"
+    }
+  ],
+  "categories": [
+    "Food",
+    "Books", 
+    "Transport",
+    "Entertainment",
+    "Fees",
+    "Other"
+  ],
+  "settings": {
+    "baseCurrency": "USD",
+    "exchangeRates": {
+      "EUR": 0.85,
+      "GBP": 0.73,
+      "CAD": 1.25,
+      "RWF": 0.001
+    },
+    "theme": "light"
+  },
+  "budgetCap": 1000
+}
+

@@ -2,7 +2,6 @@
 
 A comprehensive, accessible, and responsive web application designed to help students manage their finances effectively. Built with HTML, CSS, and JavaScript.
 
- **Live Demo:** [YouTube URL](https://youtu.be/7yRMunOUaVU)
 
 ## Features
 
@@ -45,12 +44,8 @@ A comprehensive, accessible, and responsive web application designed to help stu
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/KamiPacifique/alu-finance-tracker.git
-   cd FinanceTracker
+   git clone https://github.com/umaureen/student-finance-tracker.git
    ```
-
-2. **Open in browser:**
-   Navigate to `http://localhost:8000`
 
 3. **Load sample data (optional):**
    - Go to Settings → Import Data
@@ -95,7 +90,7 @@ FinanceTracker/
 
 ##  Contact
 
-- **Developer**: Kami Pacifique
-- **Email**: p.kami@alustudent.com  
-- **GitHub**: KamiPacifique
+- **Developer**: Umutesi Peace Maureen
+- **Email**: u.maureen@alustudent.com 
+- **GitHub**: umaureen
 

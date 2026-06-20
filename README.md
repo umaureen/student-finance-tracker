@@ -1,6 +1,7 @@
 #  Student Finance Tracker
 
 A comprehensive, accessible, and responsive web application designed to help students manage their finances effectively. Built with HTML, CSS, and JavaScript.
+Live Demo:[You Tube](https://youtu.be/BkWYhZPzNHg) Pges Deployment [link](https://umaureen.github.io/student-finance-tracker/)
 
 
 ## Features
